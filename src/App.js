@@ -1,26 +1,44 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Amplify, { Analytics, Storage, Auth } from 'aws-amplify';
+import awsconfig from './aws-exports';
+import { withAuthenticator, S3Album } from 'aws-amplify-react';
+import uuid from 'uuid/v4';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+Amplify.configure(awsconfig);
+Storage.configure({
+    level: 'private'
+});
+
+class App extends React.Component {
+  uploadFile = () => {
+      let name;
+      const file = document.getElementById("uploadPicture").files[0];
+      let extention = file.name.substring(file.name.lastIndexOf('.'));
+      console.log(extention);
+      name = uuid() + extention;
+
+
+      Storage.put(name, file).then(() => {
+          this.setState({ file: name });
+      })
+  };
+
+
+  componentDidMount() {
+        Analytics.record('Amplify_CLI');
+    }
+
+    render() {
+        return (
+            <div className="App">
+                <p> Pick a file</p>
+                <input id="uploadPicture" type="file"/>
+                <button onClick={this.uploadFile} >upload</button>
+                <S3Album class='image' level="private" path='' />
+            </div>
+        );
+    }
 }
 
-export default App;
+export default withAuthenticator(App, true);

@@ -1,0 +1,20 @@
+{
+    "appName": "climbingapp",
+    "roleName": "pinpointLambdaRole80e96499",
+    "cloudWatchPolicyName": "cloudWatchPolicy80e96499",
+    "pinpointPolicyName": "pinpointPolicy80e96499",
+    "authPolicyName": "pinpoint_amplify_80e96499",
+    "unauthPolicyName": "pinpoint_amplify_80e96499",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    }
+}
