@@ -1,0 +1,14 @@
+{
+    "trigger": true,
+    "modules": [
+        "custom"
+    ],
+    "parentResource": "climbingapp6f1014f5",
+    "functionName": "climbingapp6f1014f5PostConfirmation",
+    "parentStack": "auth",
+    "triggerEnvs": "[]",
+    "triggerTemplate": "PostConfirmation.json.ejs",
+    "roleName": "climbingapp6f1014f5PostConfirmation",
+    "skipEdit": true,
+    "resourceName": "climbingapp6f1014f5PostConfirmation"
+}
