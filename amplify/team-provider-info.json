@@ -13,6 +13,9 @@
         "categories": {
             "auth": {
                 "climbingapp6f1014f5": {}
+            },
+            "function": {
+                "climbingapp6f1014f5PostConfirmation": {}
             }
         }
     }

@@ -1,10 +1,11 @@
 import React from 'react';
-import './App.css';
+import './css/uploadPictures.css';
 import { Analytics, Storage } from 'aws-amplify';
+import { S3Album } from 'aws-amplify-react';
 import uuid from 'uuid/v4';
 
 Storage.configure({
-    level: 'private'
+    level: 'protected'
 });
 
 class uploadPictures extends React.Component {
@@ -32,7 +33,7 @@ class uploadPictures extends React.Component {
                 <p> Pick a file</p>
                 <input id="uploadPicture" type="file"/>
                 <button onClick={this.uploadFile} >upload</button>
-                <S3Album class='image' level="private" path='' />
+                <S3Album class='image' level="protected" path='' />
             </div>
         );
     }

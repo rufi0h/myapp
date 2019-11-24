@@ -1,0 +1,12 @@
+type Video @model @auth(rules: [
+                                {allow: owner}
+                                {allow: groups, groups: ["Users"], mutations: null, queries: [get, list]}]) {
+  id: ID!
+  tags: [Tag] @connection
+  createdAt: AWSDateTime!
+}
+type Tag @model {
+  id: ID!
+  name: String
+}
+

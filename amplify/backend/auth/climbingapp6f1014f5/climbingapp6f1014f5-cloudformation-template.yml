@@ -9,6 +9,18 @@ Parameters:
     Type: String
   
   
+  
+  
+  functionclimbingapp6f1014f5PostConfirmationArn: 
+    Type: String
+    Default: functionclimbingapp6f1014f5PostConfirmationArn
+  
+  functionclimbingapp6f1014f5PostConfirmationName: 
+    Type: String
+    Default: functionclimbingapp6f1014f5PostConfirmationName
+  
+  
+  
 
     
   identityPoolName:
@@ -88,6 +100,21 @@ Parameters:
               
   dependsOn:
     Type: CommaDelimitedList
+        
+  thirdPartyAuth:
+    Type: String
+            
+  triggers:
+    Type: String
+                
+  hostedUI:
+    Type: String
+                  
+  parentStack:
+    Type: String
+                
+  permissions:
+    Type: CommaDelimitedList
     
 Conditions:
   ShouldNotCreateEnvResources: !Equals [ !Ref env, NONE ]
@@ -142,6 +169,19 @@ Resources:
         
       
       
+      LambdaConfig:
+        
+        
+        
+        
+        
+          PostConfirmation: !Ref functionclimbingapp6f1014f5PostConfirmationArn
+        
+        
+        
+        
+        
+      
       
       AutoVerifiedAttributes: !Ref autoVerifiedAttributes
       
@@ -165,6 +205,27 @@ Resources:
         SnsCallerArn: !GetAtt SNSRole.Arn
         ExternalId: climbi6f1014f5_role_external_id
     
+  
+    
+    
+  
+    
+  
+  UserPoolPostConfirmationLambdaInvokePermission: 
+    Type: "AWS::Lambda::Permission"
+    DependsOn: UserPool
+    Properties: 
+      Action: "lambda:invokeFunction"
+      Principal: "cognito-idp.amazonaws.com"
+      FunctionName: !Ref functionclimbingapp6f1014f5PostConfirmationName
+      SourceArn: !GetAtt UserPool.Arn
+    
+  
+  
+   
+    
+  # Updating lambda role with permissions to Cognito
+  
   
   UserPoolClientWeb:
   # Created provide application access to user pool
