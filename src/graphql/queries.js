@@ -1,44 +1,6 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getUser = `query GetUser($id: ID!) {
-  getUser(id: $id) {
-    id
-    name
-    bio
-    picture
-    videos {
-      items {
-        id
-        createdAt
-        owner
-      }
-      nextToken
-    }
-    owner
-  }
-}
-`;
-export const listUsers = `query ListUsers(
-  $filter: ModelUserFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
-    items {
-      id
-      name
-      bio
-      picture
-      videos {
-        nextToken
-      }
-      owner
-    }
-    nextToken
-  }
-}
-`;
 export const getVideo = `query GetVideo($id: ID!) {
   getVideo(id: $id) {
     id
@@ -49,17 +11,22 @@ export const getVideo = `query GetVideo($id: ID!) {
       }
       nextToken
     }
-    user {
+    route {
       id
       name
-      bio
-      picture
+      active
+      grade
+      rating
+      dateSet
+      tags {
+        nextToken
+      }
+      routeSetter
       videos {
         nextToken
       }
-      owner
     }
-    createdAt
+    file
     owner
   }
 }
@@ -75,14 +42,16 @@ export const listVideos = `query ListVideos(
       tags {
         nextToken
       }
-      user {
+      route {
         id
         name
-        bio
-        picture
-        owner
+        active
+        grade
+        rating
+        dateSet
+        routeSetter
       }
-      createdAt
+      file
       owner
     }
     nextToken
@@ -101,6 +70,170 @@ export const listTags = `query ListTags($filter: ModelTagFilterInput, $limit: In
     items {
       id
       name
+    }
+    nextToken
+  }
+}
+`;
+export const getCompany = `query GetCompany($id: ID!) {
+  getCompany(id: $id) {
+    id
+    name
+    location
+    gyms {
+      items {
+        id
+        name
+        location
+        gymImg
+        gymLogo
+      }
+      nextToken
+    }
+    companyLogo
+    companyImg
+  }
+}
+`;
+export const listCompanys = `query ListCompanys(
+  $filter: ModelCompanyFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listCompanys(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+      location
+      gyms {
+        nextToken
+      }
+      companyLogo
+      companyImg
+    }
+    nextToken
+  }
+}
+`;
+export const getGym = `query GetGym($id: ID!) {
+  getGym(id: $id) {
+    id
+    name
+    location
+    walls {
+      items {
+        id
+        name
+        wallImg
+      }
+      nextToken
+    }
+    gymImg
+    gymLogo
+  }
+}
+`;
+export const listGyms = `query ListGyms($filter: ModelGymFilterInput, $limit: Int, $nextToken: String) {
+  listGyms(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+      location
+      walls {
+        nextToken
+      }
+      gymImg
+      gymLogo
+    }
+    nextToken
+  }
+}
+`;
+export const getWall = `query GetWall($id: ID!) {
+  getWall(id: $id) {
+    id
+    name
+    routes {
+      items {
+        id
+        name
+        active
+        grade
+        rating
+        dateSet
+        routeSetter
+      }
+      nextToken
+    }
+    wallImg
+  }
+}
+`;
+export const listWalls = `query ListWalls(
+  $filter: ModelWallFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listWalls(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+      routes {
+        nextToken
+      }
+      wallImg
+    }
+    nextToken
+  }
+}
+`;
+export const getRoute = `query GetRoute($id: ID!) {
+  getRoute(id: $id) {
+    id
+    name
+    active
+    grade
+    rating
+    dateSet
+    tags {
+      items {
+        id
+        name
+      }
+      nextToken
+    }
+    routeSetter
+    videos {
+      items {
+        id
+        file
+        owner
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const listRoutes = `query ListRoutes(
+  $filter: ModelRouteFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listRoutes(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+      active
+      grade
+      rating
+      dateSet
+      tags {
+        nextToken
+      }
+      routeSetter
+      videos {
+        nextToken
+      }
     }
     nextToken
   }

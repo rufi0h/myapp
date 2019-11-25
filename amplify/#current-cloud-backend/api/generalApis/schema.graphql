@@ -1,0 +1,49 @@
+type Video @model @auth(rules: [
+                                {allow: owner}
+                                {allow: groups, groups: ["Users"], mutations: null, queries: [get, list]}]) {
+  id: ID!
+  tags: [Tag] @connection
+  route: Route @connection
+  file: String
+}
+type Tag @model {
+  id: ID!
+  name: String
+}
+
+type Company @model {
+    id: ID!
+    name: String
+    location: String
+    gyms: [Gym] @connection
+    companyLogo: String
+    companyImg: String
+}
+
+type Gym @model {
+    id: ID!
+    name: String
+    location: String
+    walls: [Wall] @connection
+    gymImg: String
+    gymLogo: String
+}
+
+type Wall @model{
+    id: ID!
+    name: String
+    routes: [Route] @connection
+    wallImg: String
+}
+
+type Route @model {
+    id: ID!
+    name: String
+    active: Boolean
+    grade: String
+    rating: Int
+    dateSet: AWSDate!
+    tags: [Tag] @connection
+    routeSetter: String
+    videos: [Video] @connection
+}

@@ -4,6 +4,7 @@ import Amplify, { Analytics, Storage, API, graphqlOperation } from 'aws-amplify'
 import awsconfig from './aws-exports';
 import { withAuthenticator} from 'aws-amplify-react';
 import UploadPictures from './components/uploadPictures/uploadPictures.js';
+import Company from './components/Companies/company.js';
 
 Amplify.configure(awsconfig);
 Storage.configure({
@@ -18,7 +19,7 @@ class App extends React.Component {
 
     render() {
         return (
-            <UploadPictures></UploadPictures>
+            <Company></Company>
         );
     }
 }
