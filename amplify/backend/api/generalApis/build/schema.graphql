@@ -1,0 +1,378 @@
+type Video {
+  id: ID!
+  tags(filter: ModelTagFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelTagConnection
+  route: Route
+  file: String
+  owner: String
+}
+
+type Tag {
+  id: ID!
+  name: String
+}
+
+type Company {
+  id: ID!
+  name: String
+  location: String
+  gyms(filter: ModelGymFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelGymConnection
+  companyLogo: String
+  companyImg: String
+}
+
+type Gym {
+  id: ID!
+  name: String
+  location: String
+  walls(filter: ModelWallFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelWallConnection
+  gymImg: String
+  gymLogo: String
+}
+
+type Wall {
+  id: ID!
+  name: String
+  routes(filter: ModelRouteFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelRouteConnection
+  wallImg: String
+}
+
+type Route {
+  id: ID!
+  name: String
+  active: Boolean
+  grade: String
+  rating: Int
+  dateSet: AWSDate!
+  tags(filter: ModelTagFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelTagConnection
+  routeSetter: String
+  videos(filter: ModelVideoFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelVideoConnection
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+type ModelVideoConnection {
+  items: [Video]
+  nextToken: String
+}
+
+input ModelStringFilterInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+}
+
+input ModelIDFilterInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+}
+
+input ModelIntFilterInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  contains: Int
+  notContains: Int
+  between: [Int]
+}
+
+input ModelFloatFilterInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  contains: Float
+  notContains: Float
+  between: [Float]
+}
+
+input ModelBooleanFilterInput {
+  ne: Boolean
+  eq: Boolean
+}
+
+input ModelVideoFilterInput {
+  id: ModelIDFilterInput
+  file: ModelStringFilterInput
+  and: [ModelVideoFilterInput]
+  or: [ModelVideoFilterInput]
+  not: ModelVideoFilterInput
+}
+
+type Query {
+  getVideo(id: ID!): Video
+  listVideos(filter: ModelVideoFilterInput, limit: Int, nextToken: String): ModelVideoConnection
+  getTag(id: ID!): Tag
+  listTags(filter: ModelTagFilterInput, limit: Int, nextToken: String): ModelTagConnection
+  getCompany(id: ID!): Company
+  listCompanys(filter: ModelCompanyFilterInput, limit: Int, nextToken: String): ModelCompanyConnection
+  getGym(id: ID!): Gym
+  listGyms(filter: ModelGymFilterInput, limit: Int, nextToken: String): ModelGymConnection
+  getWall(id: ID!): Wall
+  listWalls(filter: ModelWallFilterInput, limit: Int, nextToken: String): ModelWallConnection
+  getRoute(id: ID!): Route
+  listRoutes(filter: ModelRouteFilterInput, limit: Int, nextToken: String): ModelRouteConnection
+}
+
+input CreateVideoInput {
+  id: ID
+  file: String
+  videoRouteId: ID
+  routeVideosId: ID
+}
+
+input UpdateVideoInput {
+  id: ID!
+  file: String
+  videoRouteId: ID
+  routeVideosId: ID
+}
+
+input DeleteVideoInput {
+  id: ID
+}
+
+type Mutation {
+  createVideo(input: CreateVideoInput!): Video
+  updateVideo(input: UpdateVideoInput!): Video
+  deleteVideo(input: DeleteVideoInput!): Video
+  createTag(input: CreateTagInput!): Tag
+  updateTag(input: UpdateTagInput!): Tag
+  deleteTag(input: DeleteTagInput!): Tag
+  createCompany(input: CreateCompanyInput!): Company
+  updateCompany(input: UpdateCompanyInput!): Company
+  deleteCompany(input: DeleteCompanyInput!): Company
+  createGym(input: CreateGymInput!): Gym
+  updateGym(input: UpdateGymInput!): Gym
+  deleteGym(input: DeleteGymInput!): Gym
+  createWall(input: CreateWallInput!): Wall
+  updateWall(input: UpdateWallInput!): Wall
+  deleteWall(input: DeleteWallInput!): Wall
+  createRoute(input: CreateRouteInput!): Route
+  updateRoute(input: UpdateRouteInput!): Route
+  deleteRoute(input: DeleteRouteInput!): Route
+}
+
+type Subscription {
+  onCreateVideo(owner: String!): Video @aws_subscribe(mutations: ["createVideo"])
+  onUpdateVideo(owner: String!): Video @aws_subscribe(mutations: ["updateVideo"])
+  onDeleteVideo(owner: String!): Video @aws_subscribe(mutations: ["deleteVideo"])
+  onCreateTag: Tag @aws_subscribe(mutations: ["createTag"])
+  onUpdateTag: Tag @aws_subscribe(mutations: ["updateTag"])
+  onDeleteTag: Tag @aws_subscribe(mutations: ["deleteTag"])
+  onCreateCompany: Company @aws_subscribe(mutations: ["createCompany"])
+  onUpdateCompany: Company @aws_subscribe(mutations: ["updateCompany"])
+  onDeleteCompany: Company @aws_subscribe(mutations: ["deleteCompany"])
+  onCreateGym: Gym @aws_subscribe(mutations: ["createGym"])
+  onUpdateGym: Gym @aws_subscribe(mutations: ["updateGym"])
+  onDeleteGym: Gym @aws_subscribe(mutations: ["deleteGym"])
+  onCreateWall: Wall @aws_subscribe(mutations: ["createWall"])
+  onUpdateWall: Wall @aws_subscribe(mutations: ["updateWall"])
+  onDeleteWall: Wall @aws_subscribe(mutations: ["deleteWall"])
+  onCreateRoute: Route @aws_subscribe(mutations: ["createRoute"])
+  onUpdateRoute: Route @aws_subscribe(mutations: ["updateRoute"])
+  onDeleteRoute: Route @aws_subscribe(mutations: ["deleteRoute"])
+}
+
+type ModelTagConnection {
+  items: [Tag]
+  nextToken: String
+}
+
+input ModelTagFilterInput {
+  id: ModelIDFilterInput
+  name: ModelStringFilterInput
+  and: [ModelTagFilterInput]
+  or: [ModelTagFilterInput]
+  not: ModelTagFilterInput
+}
+
+input CreateTagInput {
+  id: ID
+  name: String
+  videoTagsId: ID
+  routeTagsId: ID
+}
+
+input UpdateTagInput {
+  id: ID!
+  name: String
+  videoTagsId: ID
+  routeTagsId: ID
+}
+
+input DeleteTagInput {
+  id: ID
+}
+
+type ModelCompanyConnection {
+  items: [Company]
+  nextToken: String
+}
+
+input ModelCompanyFilterInput {
+  id: ModelIDFilterInput
+  name: ModelStringFilterInput
+  location: ModelStringFilterInput
+  companyLogo: ModelStringFilterInput
+  companyImg: ModelStringFilterInput
+  and: [ModelCompanyFilterInput]
+  or: [ModelCompanyFilterInput]
+  not: ModelCompanyFilterInput
+}
+
+input CreateCompanyInput {
+  id: ID
+  name: String
+  location: String
+  companyLogo: String
+  companyImg: String
+}
+
+input UpdateCompanyInput {
+  id: ID!
+  name: String
+  location: String
+  companyLogo: String
+  companyImg: String
+}
+
+input DeleteCompanyInput {
+  id: ID
+}
+
+type ModelGymConnection {
+  items: [Gym]
+  nextToken: String
+}
+
+input ModelGymFilterInput {
+  id: ModelIDFilterInput
+  name: ModelStringFilterInput
+  location: ModelStringFilterInput
+  gymImg: ModelStringFilterInput
+  gymLogo: ModelStringFilterInput
+  and: [ModelGymFilterInput]
+  or: [ModelGymFilterInput]
+  not: ModelGymFilterInput
+}
+
+input CreateGymInput {
+  id: ID
+  name: String
+  location: String
+  gymImg: String
+  gymLogo: String
+  companyGymsId: ID
+}
+
+input UpdateGymInput {
+  id: ID!
+  name: String
+  location: String
+  gymImg: String
+  gymLogo: String
+  companyGymsId: ID
+}
+
+input DeleteGymInput {
+  id: ID
+}
+
+type ModelWallConnection {
+  items: [Wall]
+  nextToken: String
+}
+
+input ModelWallFilterInput {
+  id: ModelIDFilterInput
+  name: ModelStringFilterInput
+  wallImg: ModelStringFilterInput
+  and: [ModelWallFilterInput]
+  or: [ModelWallFilterInput]
+  not: ModelWallFilterInput
+}
+
+input CreateWallInput {
+  id: ID
+  name: String
+  wallImg: String
+  gymWallsId: ID
+}
+
+input UpdateWallInput {
+  id: ID!
+  name: String
+  wallImg: String
+  gymWallsId: ID
+}
+
+input DeleteWallInput {
+  id: ID
+}
+
+type ModelRouteConnection {
+  items: [Route]
+  nextToken: String
+}
+
+input ModelRouteFilterInput {
+  id: ModelIDFilterInput
+  name: ModelStringFilterInput
+  active: ModelBooleanFilterInput
+  grade: ModelStringFilterInput
+  rating: ModelIntFilterInput
+  dateSet: ModelStringFilterInput
+  routeSetter: ModelStringFilterInput
+  and: [ModelRouteFilterInput]
+  or: [ModelRouteFilterInput]
+  not: ModelRouteFilterInput
+}
+
+input CreateRouteInput {
+  id: ID
+  name: String
+  active: Boolean
+  grade: String
+  rating: Int
+  dateSet: AWSDate!
+  routeSetter: String
+  wallRoutesId: ID
+}
+
+input UpdateRouteInput {
+  id: ID!
+  name: String
+  active: Boolean
+  grade: String
+  rating: Int
+  dateSet: AWSDate
+  routeSetter: String
+  wallRoutesId: ID
+}
+
+input DeleteRouteInput {
+  id: ID
+}
