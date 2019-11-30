@@ -1,0 +1,13 @@
+.companyListing img{
+    max-height: 400px;
+}
+
+.gymsListing {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.gym img {
+    max-height: 200px;
+}

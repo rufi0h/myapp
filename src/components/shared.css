@@ -1,0 +1,13 @@
+.parentListing img{
+    max-height: 400px;
+}
+
+.childListing {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.child img {
+    max-height: 200px;
+}
