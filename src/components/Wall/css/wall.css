@@ -1,0 +1,13 @@
+.wallListing img{
+    max-height: 400px;
+}
+
+.routeListing {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.route img {
+    max-height: 200px;
+}

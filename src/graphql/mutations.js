@@ -118,7 +118,7 @@ export const createCompany = `mutation CreateCompany($input: CreateCompanyInput!
     name
     location
     gyms {
-      items {
+      items {   
         id
         name
         location

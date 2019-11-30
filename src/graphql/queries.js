@@ -106,6 +106,12 @@ export const listCompanys = `query ListCompanys(
       name
       location
       gyms {
+        items {
+            name
+            gymLogo
+            gymImg
+            location
+        }
         nextToken
       }
       companyLogo

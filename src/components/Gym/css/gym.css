@@ -1,0 +1,13 @@
+.gymListing img{
+    max-height: 400px;
+}
+
+.wallListing {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.wall img {
+    max-height: 200px;
+}
