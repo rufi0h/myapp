@@ -7,7 +7,7 @@ import Home from './components/Home/home';
 import Gyms from './components/Companies/company';
 import Gym from './components/Gym/gym';
 import Wall from './components/Wall/wall';
-import Routes from './components/Route/route';
+import ClimbingRoute from './components/ClimbingRoute/climbingRoute';
 import {
     BrowserRouter as Router,
     Switch,
@@ -46,7 +46,7 @@ class App extends React.Component {
                                 <Link to="/wall">Wall</Link>
                             </li>
                             <li>
-                                <Link to="/route">Route</Link>
+                                <Link to="/climbingRoute">ClimbingRoute</Link>
                             </li>
                         </ul>
                     </nav>
@@ -54,21 +54,11 @@ class App extends React.Component {
                     {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
                     <Switch>
-                        <Route path="/gyms">
-                            <Gyms />
-                        </Route>
-                        <Route path="/gym">
-                            <Gym />
-                        </Route>
-                        <Route path="/wall">
-                            <Wall />
-                        </Route>
-                        <Route path="/route">
-                            <Routes />
-                        </Route>
-                        <Route path="/">
-                            <Home />
-                        </Route>
+                        <Route exact path="/gyms" component={Gyms} />
+                        <Route exact path="/wall/:id" component={Wall}/>
+                        <Route exact path="/climbingRoute/:id" component={ClimbingRoute} />
+                        <Route exact path="/gym/:id" component={Gym}/>
+                        <Route path="/" component={Home}/>
                     </Switch>
                 </div>
             </Router>

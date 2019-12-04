@@ -2,26 +2,32 @@ import React from 'react';
 import { Storage, API, graphqlOperation } from 'aws-amplify';
 import { getWallsRoutes } from '../../graphql/customQueries';
 import './css/wall.css';
+import {useHistory} from "react-router-dom";
 
 Storage.configure({
     level: 'protected'
 });
 
-let temp = getWallsRoutes.split('**');
-let searchQuery = temp[0] + "64d1b466-bae6-497a-86a0-abbfa64947dd" + temp[1];
+function ListRoutes(props) {
+    const history = useHistory();
 
-function ListRoutes(routeList) {
-    const route = routeList.routes;
+    function testFunction (id) {
+        history.push(`/climbingRoute/${id}`);
+    }
+    const route = props.routes;
     const listItems = route.map((route) =>
 
-        <div className="wall"
+        <div className="child"
              key={route.id}>
             <p>{route.name}</p>
             <p>{route.videos.items.length} Video</p>
+            <p>
+                <button onClick={() => testFunction(route.id)}> go to the route</button>
+            </p>
         </div>
     );
     return (
-        <div className="routeListing">{listItems}</div>
+        <div className="childListing">{listItems}</div>
     )
 }
 
@@ -31,6 +37,10 @@ class Wall extends React.Component {
     };
 
     async componentDidMount() {
+        const wallId = this.props.match.params.id;
+        let temp = getWallsRoutes.split('**');
+        let searchQuery = temp[0] + wallId + temp[1];
+
         const wall = await API.graphql(graphqlOperation(searchQuery));
         this.setState({
             wall: [wall.data.getWall]
@@ -42,7 +52,7 @@ class Wall extends React.Component {
             <div className="App">
                 {
                     this.state.wall.map((wall, index) => (
-                        <div className="gymListing" key={index}>
+                        <div className="parentListing" key={index}>
                             <header>
                                 <h1>{wall.name}</h1>
                             </header>

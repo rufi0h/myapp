@@ -1,6 +1,7 @@
 type Video {
   id: ID!
   tags(filter: ModelTagFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelTagConnection
+  createdAt: AWSDateTime!
   route: Route
   file: String
   owner: String
@@ -42,7 +43,7 @@ type Route {
   active: Boolean
   grade: String
   rating: Int
-  dateSet: AWSDate!
+  dateSet: AWSDateTime!
   tags(filter: ModelTagFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelTagConnection
   routeSetter: String
   videos(filter: ModelVideoFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelVideoConnection
@@ -115,6 +116,7 @@ input ModelBooleanFilterInput {
 
 input ModelVideoFilterInput {
   id: ModelIDFilterInput
+  createdAt: ModelStringFilterInput
   file: ModelStringFilterInput
   and: [ModelVideoFilterInput]
   or: [ModelVideoFilterInput]
@@ -138,6 +140,7 @@ type Query {
 
 input CreateVideoInput {
   id: ID
+  createdAt: AWSDateTime!
   file: String
   videoRouteId: ID
   routeVideosId: ID
@@ -145,6 +148,7 @@ input CreateVideoInput {
 
 input UpdateVideoInput {
   id: ID!
+  createdAt: AWSDateTime
   file: String
   videoRouteId: ID
   routeVideosId: ID
@@ -357,7 +361,7 @@ input CreateRouteInput {
   active: Boolean
   grade: String
   rating: Int
-  dateSet: AWSDate!
+  dateSet: AWSDateTime!
   routeSetter: String
   wallRoutesId: ID
 }
@@ -368,7 +372,7 @@ input UpdateRouteInput {
   active: Boolean
   grade: String
   rating: Int
-  dateSet: AWSDate
+  dateSet: AWSDateTime
   routeSetter: String
   wallRoutesId: ID
 }

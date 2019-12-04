@@ -7,20 +7,17 @@ Storage.configure({
     level: 'protected'
 });
 
-let temp = getRouteVideos.split('**');
-let searchQuery = temp[0] + "9e219cbd-ef4e-49d8-9e66-1ad64933a323" + temp[1];
-
-function ListVideos(videoList) {
-    const videos = videoList.videos;
+function ListVideos(props) {
+    const videos = props.videos;
     const listItems = videos.map((video) =>
 
         <div className="child"
              key={video.id}>
             <p>{video.file}</p>
             <div>
-                {/*<video controls width="250">*/}
-                    {/*<source src={video.file} type="video/mp4">test</source>*/}
-                {/*</video>*/}
+                <video controls muted width="250">
+                    <source src={video.file} type="video/mp4"/>
+                </video>
             </div>
         </div>
     );
@@ -29,12 +26,19 @@ function ListVideos(videoList) {
     )
 }
 
-class Route extends React.Component {
+class ClimbingRoute extends React.Component {
     state = {
         route: []
     };
 
     async componentDidMount() {
+
+        const routeId = this.props.match.params.id;
+        console.log(routeId);
+
+        let temp = getRouteVideos.split('**');
+        let searchQuery = temp[0] + routeId + temp[1];
+
         const route = await API.graphql(graphqlOperation(searchQuery));
         this.setState({
             route: [route.data.getRoute]
@@ -60,4 +64,4 @@ class Route extends React.Component {
     }
 }
 
-export default Route;
+export default ClimbingRoute;
