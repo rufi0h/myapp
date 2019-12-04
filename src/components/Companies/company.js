@@ -22,7 +22,6 @@ function ListGyms(props) { //make a class
         <div className="child"
              key={gym.id}>
             <p>{gym.name}</p>
-            <p>{gym.id}</p>
             <p>{gym.location}</p>
             <img
                 src={gym.gymImg}

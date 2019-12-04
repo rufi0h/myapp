@@ -60,7 +60,7 @@ class Gym extends React.Component {
                             <header>
                                 <h1>{gym.name}</h1>
                             </header>
-                            <p>{gym.id} </p>
+                            <p>{gym.location} </p>
                             <img
                                 src={gym.gymImg}
                                 alt="wallImg"/>

@@ -118,10 +118,9 @@
 							"Arn"
 						]
 					},
-					"useDefault": "manual",
+					"useDefault": "default",
 					"usernameAttributes": "email",
 					"dependsOn": "[object Object]",
-					"thirdPartyAuth": false,
 					"triggers": "{\"PostConfirmation\":[\"custom\"]}",
 					"hostedUI": false,
 					"parentStack": {
@@ -232,7 +231,6 @@
 				"TemplateURL": "https://s3.amazonaws.com/amplify-climbingapp-dev-143311-deployment/amplify-cfn-templates/function/climbingapp6f1014f5PostConfirmation-cloudformation-template.json",
 				"Parameters": {
 					"modules": "custom",
-					"resourceName": "climbingapp6f1014f5PostConfirmation",
 					"env": "dev"
 				}
 			}

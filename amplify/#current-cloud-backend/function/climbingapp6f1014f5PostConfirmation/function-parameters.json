@@ -7,8 +7,10 @@
     "functionName": "climbingapp6f1014f5PostConfirmation",
     "parentStack": "auth",
     "triggerEnvs": "[]",
-    "triggerTemplate": "PostConfirmation.json.ejs",
+    "triggerDir": "/Users/markfoster/.nvm/versions/node/v10.14.2/lib/node_modules/@aws-amplify/cli/node_modules/amplify-category-auth/provider-utils/awscloudformation/utils/../triggers/PostConfirmation",
     "roleName": "climbingapp6f1014f5PostConfirmation",
+    "triggerTemplate": "PostConfirmation.json.ejs",
+    "triggerEventPath": "PostConfirmation.event.json",
     "skipEdit": true,
     "resourceName": "climbingapp6f1014f5PostConfirmation"
 }
