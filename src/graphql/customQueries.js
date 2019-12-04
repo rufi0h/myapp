@@ -60,6 +60,7 @@ export const getGymsWalls = `query GetGymsWalls{
   getGym(id: "**"){
     id
     name
+    location
     gymImg
     walls{
         items{

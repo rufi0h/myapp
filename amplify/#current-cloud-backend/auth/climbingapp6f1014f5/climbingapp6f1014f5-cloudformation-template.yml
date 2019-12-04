@@ -100,10 +100,7 @@ Parameters:
               
   dependsOn:
     Type: CommaDelimitedList
-        
-  thirdPartyAuth:
-    Type: String
-            
+      
   triggers:
     Type: String
                 
