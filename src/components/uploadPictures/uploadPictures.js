@@ -13,7 +13,6 @@ class uploadPictures extends React.Component {
         let name;
         const file = document.getElementById("uploadPicture").files[0];
         let extention = file.name.substring(file.name.lastIndexOf('.'));
-        console.log(extention);
         name = uuid() + extention;
 
 
