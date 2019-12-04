@@ -2,10 +2,17 @@ import React from 'react';
 import { Storage, API, graphqlOperation } from 'aws-amplify';
 import { getRouteVideos } from '../../graphql/customQueries';
 import '../shared.css';
+import {useHistory} from "react-router-dom";
 
 Storage.configure({
     level: 'protected'
 });
+
+function GoUpload (props) {
+    const history = useHistory();
+    history.push(`/climbingRoute/${props}`);
+}
+
 
 function ListVideos(props) {
     const videos = props.videos;
@@ -16,6 +23,7 @@ function ListVideos(props) {
             <p>{video.file}</p>
             <div>
                 <video controls muted width="250">
+                    <source src={video.file} type="video/mov"/>
                     <source src={video.file} type="video/mp4"/>
                 </video>
             </div>
@@ -31,10 +39,14 @@ class ClimbingRoute extends React.Component {
         route: []
     };
 
+    handleSubmit = (id) => {
+        console.log('the value of id is ', id);
+        this.props.history.push(`/uploadVideo/:${id}`);
+    };
+
     async componentDidMount() {
 
         const routeId = this.props.match.params.id;
-        console.log(routeId);
 
         let temp = getRouteVideos.split('**');
         let searchQuery = temp[0] + routeId + temp[1];
@@ -54,7 +66,10 @@ class ClimbingRoute extends React.Component {
                             <header>
                                 <h1>{route.name}</h1>
                             </header>
-                            <p>{route.id} </p>
+                            <p>
+                                <button onClick={() =>this.handleSubmit(route.id)}>Upload Video</button>
+                            </p>
+                            <p>{route.id}</p>
                             <ListVideos videos={route.videos.items} />
                         </div>
                     ))
