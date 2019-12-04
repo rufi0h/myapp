@@ -3,29 +3,35 @@ import { Storage, API, graphqlOperation } from 'aws-amplify';
 //import { S3Album } from 'aws-amplify-react';
 import { getGymsWalls } from '../../graphql/customQueries';
 import './css/gym.css';
+import {useHistory} from "react-router-dom";
 
 Storage.configure({
     level: 'protected'
 });
 
-let temp = getGymsWalls.split('**');
-let searchQuery = temp[0] + "312d2b3d-a995-4610-bc1b-de538b4e5fde" + temp[1];
+function ListWalls(props) {
+    const wall = props.walls;
+    const history = useHistory();
 
-function ListWalls(wallList) {
-    const wall = wallList.walls;
+    function testFunction (id) {
+        history.push(`/wall/${id}`);
+    }
     const listItems = wall.map((wall) =>
 
-        <div className="wall"
+        <div className="child"
              key={wall.id}>
             <p>{wall.name}</p>
             <img
                 src={wall.wallImg}
                 alt="wallImg"/>
             <p>{wall.routes.items.length} Routes</p>
+            <p>
+                <button onClick={() => testFunction(wall.id)}> go to the wall</button>
+            </p>
         </div>
     );
     return (
-        <div className="wallListing">{listItems}</div>
+        <div className="childListing">{listItems}</div>
     )
 }
 
@@ -35,6 +41,10 @@ class Gym extends React.Component {
     };
 
     async componentDidMount() {
+        const gymId = this.props.match.params.id;
+
+        let temp = getGymsWalls.split('**');
+        let searchQuery = temp[0] + gymId + temp[1];
         const gymList = await API.graphql(graphqlOperation(searchQuery));
         this.setState({
             gym: [gymList.data.getGym]
@@ -46,7 +56,7 @@ class Gym extends React.Component {
             <div className="App">
                 {
                     this.state.gym.map((gym, index) => (
-                        <div className="gymListing" key={index}>
+                        <div className="parentListing" key={index}>
                             <header>
                                 <h1>{gym.name}</h1>
                             </header>

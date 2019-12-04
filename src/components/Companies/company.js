@@ -3,34 +3,37 @@ import './css/company.css';
 import { Storage, API, graphqlOperation } from 'aws-amplify';
 //import { S3Album } from 'aws-amplify-react';
 import { listCompanysGyms } from '../../graphql/customQueries';
-import { Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 Storage.configure({
     level: 'protected'
 });
 
-function testFunction (id) {
-    console.log("the id is ", id);
-}
 
-function ListGyms(gymList) {
-    const gyms = gymList.gyms;
+
+function ListGyms(props) { //make a class
+    const gyms = props.gyms;
+    const history = useHistory();
+
+    function testFunction (id) {
+        history.push(`/gym/${id}`);
+    }
     const listItems = gyms.map((gym) =>
-
-        <div className="gym"
+        <div className="child"
              key={gym.id}>
             <p>{gym.name}</p>
+            <p>{gym.id}</p>
             <p>{gym.location}</p>
             <img
                 src={gym.gymImg}
                 alt="gymImg"/>
             <p>
-                <button onClick={testFunction(gym.id)}> go to the gym</button>
+                <button onClick={() => testFunction(gym.id)}> go to the gym</button>
             </p>
         </div>
     );
     return (
-        <div className="gymsListing">{listItems}</div>
+        <div className="childListing">{listItems}</div>
     )
 }
 
@@ -53,13 +56,13 @@ class Company extends React.Component {
             <div className="App">
                     {
                         this.state.companies.map((companies, index) => (
-                            <div className="companyListing" key={index}>
+                            <div className="parentListing" key={index}>
                                 <header>
                                     <h1>{companies.name}</h1>
                                 </header>
                                 <p>{companies.location} </p>
                                 <img
-                                     src={companies.gymImg}
+                                     src={companies.companyImg}
                                      alt="companyLogo"/>
                                 <ListGyms gyms={companies.gyms.items} />
                             </div>

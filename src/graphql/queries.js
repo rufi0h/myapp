@@ -11,6 +11,7 @@ export const getVideo = `query GetVideo($id: ID!) {
       }
       nextToken
     }
+    createdAt
     route {
       id
       name
@@ -42,6 +43,7 @@ export const listVideos = `query ListVideos(
       tags {
         nextToken
       }
+      createdAt
       route {
         id
         name
@@ -106,12 +108,6 @@ export const listCompanys = `query ListCompanys(
       name
       location
       gyms {
-        items {
-            name
-            gymLogo
-            gymImg
-            location
-        }
         nextToken
       }
       companyLogo
@@ -212,6 +208,7 @@ export const getRoute = `query GetRoute($id: ID!) {
     videos {
       items {
         id
+        createdAt
         file
         owner
       }

@@ -1,3 +1,17 @@
+type Video @model @auth(rules: [
+    {allow: owner}
+    {allow: groups, groups: ["Users"], mutations: null, queries: [get, list]}]) {
+    id: ID!
+    tags: [Tag] @connection
+    createdAt: AWSDateTime!
+    route: Route @connection
+    file: String
+}
+type Tag @model {
+    id: ID!
+    name: String
+}
+
 type Company @model {
     id: ID!
     name: String
@@ -29,23 +43,8 @@ type Route @model {
     active: Boolean
     grade: String
     rating: Int
-    dateSet: AWSDate!
+    dateSet: AWSDateTime!
     tags: [Tag] @connection
     routeSetter: String
     videos: [Video] @connection
 }
-
-type Video @model @auth(rules: [
-    {allow: owner}
-    {allow: groups, groups: ["Users"], mutations: null, queries: [get, list]}]) {
-    id: ID!
-    tags: [Tag] @connection
-    route: Route @connection
-    file: String
-}
-
-type Tag @model {
-    id: ID!
-    name: String
-}
-

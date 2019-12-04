@@ -11,6 +11,7 @@ export const createVideo = `mutation CreateVideo($input: CreateVideoInput!) {
       }
       nextToken
     }
+    createdAt
     route {
       id
       name
@@ -41,6 +42,7 @@ export const updateVideo = `mutation UpdateVideo($input: UpdateVideoInput!) {
       }
       nextToken
     }
+    createdAt
     route {
       id
       name
@@ -71,6 +73,7 @@ export const deleteVideo = `mutation DeleteVideo($input: DeleteVideoInput!) {
       }
       nextToken
     }
+    createdAt
     route {
       id
       name
@@ -118,7 +121,7 @@ export const createCompany = `mutation CreateCompany($input: CreateCompanyInput!
     name
     location
     gyms {
-      items {   
+      items {
         id
         name
         location
@@ -305,6 +308,7 @@ export const createRoute = `mutation CreateRoute($input: CreateRouteInput!) {
     videos {
       items {
         id
+        createdAt
         file
         owner
       }
@@ -332,6 +336,7 @@ export const updateRoute = `mutation UpdateRoute($input: UpdateRouteInput!) {
     videos {
       items {
         id
+        createdAt
         file
         owner
       }
@@ -359,6 +364,7 @@ export const deleteRoute = `mutation DeleteRoute($input: DeleteRouteInput!) {
     videos {
       items {
         id
+        createdAt
         file
         owner
       }

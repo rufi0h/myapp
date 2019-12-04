@@ -11,6 +11,7 @@ export const onCreateVideo = `subscription OnCreateVideo($owner: String!) {
       }
       nextToken
     }
+    createdAt
     route {
       id
       name
@@ -41,6 +42,7 @@ export const onUpdateVideo = `subscription OnUpdateVideo($owner: String!) {
       }
       nextToken
     }
+    createdAt
     route {
       id
       name
@@ -71,6 +73,7 @@ export const onDeleteVideo = `subscription OnDeleteVideo($owner: String!) {
       }
       nextToken
     }
+    createdAt
     route {
       id
       name
@@ -305,6 +308,7 @@ export const onCreateRoute = `subscription OnCreateRoute {
     videos {
       items {
         id
+        createdAt
         file
         owner
       }
@@ -332,6 +336,7 @@ export const onUpdateRoute = `subscription OnUpdateRoute {
     videos {
       items {
         id
+        createdAt
         file
         owner
       }
@@ -359,6 +364,7 @@ export const onDeleteRoute = `subscription OnDeleteRoute {
     videos {
       items {
         id
+        createdAt
         file
         owner
       }
