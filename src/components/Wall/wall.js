@@ -41,7 +41,6 @@ class Wall extends React.Component {
         let temp = getWallsRoutes.split('**');
         let searchQuery = temp[0] + wallId + temp[1];
 
-        console.log(searchQuery);
         const wall = await API.graphql(graphqlOperation(searchQuery));
         this.setState({
             wall: [wall.data.getWall]

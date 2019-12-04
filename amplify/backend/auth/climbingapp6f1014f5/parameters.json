@@ -44,7 +44,7 @@
             "Arn"
         ]
     },
-    "useDefault": "manual",
+    "useDefault": "default",
     "usernameAttributes": [
         "email"
     ],
@@ -59,7 +59,6 @@
             ]
         }
     ],
-    "thirdPartyAuth": false,
     "triggers": "{\"PostConfirmation\":[\"custom\"]}",
     "hostedUI": false,
     "parentStack": {
