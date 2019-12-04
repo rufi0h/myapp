@@ -112,3 +112,14 @@ export const getRouteVideos = `query GetRoute {
     }
   }
 }`;
+
+export const addVideo = `mutation AddVideo {
+  createVideo(input: {
+    routeVideosId: "**"
+    file: "**"
+    createdAt: "**"
+  }){
+    id
+    file
+  }
+}`;

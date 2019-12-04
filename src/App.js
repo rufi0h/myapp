@@ -8,6 +8,8 @@ import Gyms from './components/Companies/company';
 import Gym from './components/Gym/gym';
 import Wall from './components/Wall/wall';
 import ClimbingRoute from './components/ClimbingRoute/climbingRoute';
+import UploadVideo from './components/UploadVideo/uploadVideos';
+
 import {
     BrowserRouter as Router,
     Switch,
@@ -30,7 +32,7 @@ class App extends React.Component {
     render() {
         return (
             <Router>
-                <div>
+                <div className="NavBar">
                     <nav>
                         <ul>
                             <li>
@@ -38,15 +40,6 @@ class App extends React.Component {
                             </li>
                             <li>
                                 <Link to="/gyms">Gyms</Link>
-                            </li>
-                            <li>
-                                <Link to="/gym">Gym</Link>
-                            </li>
-                            <li>
-                                <Link to="/wall">Wall</Link>
-                            </li>
-                            <li>
-                                <Link to="/climbingRoute">ClimbingRoute</Link>
                             </li>
                         </ul>
                     </nav>
@@ -58,6 +51,7 @@ class App extends React.Component {
                         <Route exact path="/wall/:id" component={Wall}/>
                         <Route exact path="/climbingRoute/:id" component={ClimbingRoute} />
                         <Route exact path="/gym/:id" component={Gym}/>
+                        <Route exact path="/uploadVideo/:id" component={UploadVideo} />
                         <Route path="/" component={Home}/>
                     </Switch>
                 </div>
