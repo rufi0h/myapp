@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Amplify, { Analytics, Storage, API, graphqlOperation } from 'aws-amplify';
+import Amplify, { Analytics, Storage } from 'aws-amplify';
 import awsconfig from './aws-exports';
 import { withAuthenticator} from 'aws-amplify-react';
 import Home from './components/Home/home';

@@ -1,50 +1,75 @@
+//uploadVideos.js
 import React from 'react';
 import { Analytics, Storage } from 'aws-amplify';
-//import { S3Album } from 'aws-amplify-react';
 import uuid from 'uuid/v4';
 import {API, graphqlOperation} from "aws-amplify/lib-esm/index";
 import {addVideo, getRouteVideos} from '../../graphql/customQueries';
+import './uploadVideos.css';
 
 Storage.configure({
     level: 'public'
 });
 
+const ProgressBar = (props) => {
+    return (
+        <div className="progressBar">
+            <Filler percentage={props.percentage}/>
+        </div>
+    )
+};
+
+const Filler = (props) => {
+    return <div className="filler" style={{width: `${props.percentage}%`}}/>
+};
+
 class uploadVideos extends React.Component {
     state = {
-        route: {}
+        route: {},
+        //uploading: false,
+        uploadProgress: 0,
+        //successfulUploaded: false
     };
      uploadFile = async () => {
         let name;
+        const uploadThis = this;
         const file = document.getElementById("uploadVideos").files[0];
-        let extention = file.name.substring(file.name.lastIndexOf('.'));
+        let extension = file.name.substring(file.name.lastIndexOf('.'));
 
-        name = uuid() + extention;
-
+        name = uuid() + extension;
         Storage.put(name, file, {
+            progressCallback(progress) {
+                let percentageDone = Math.round((progress.loaded/progress.total)*100);
+                uploadThis.setState( () => {
+                    return {
+                        uploadProgress: percentageDone
+                    }
+                });
+                console.log(`Uploaded: ${percentageDone}%`);
+            },
             level: 'public'
         }).then(() => {
             this.setState({ file: name });
         });
 
-//create a created at field
+        //saving video to the route
         const routeId = this.props.match.params.id;
+        let date = new Date();
+        date = date.toISOString().split('T');
         let temp = addVideo.split('**');
-        let searchQuery = temp[0]
+        let mutationCreateVideo = temp[0]
             + routeId
             + temp[1]
-            + ("https://betavideos-dev.s3.amazonaws.com/public/" +name)
+            + name
             + temp[2]
-            + "2019-12-01T14:30Z"
+            + date[0]
             + temp[3];
-        await API.graphql(graphqlOperation(searchQuery));
+        await API.graphql(graphqlOperation(mutationCreateVideo));
     };
 
     async componentDidMount() {
         const routeId = this.props.match.params.id;
-
         let temp = getRouteVideos.split('**');
         let searchQuery = temp[0] + routeId + temp[1];
-
         const route = await API.graphql(graphqlOperation(searchQuery));
         this.setState({
             route: route.data.getRoute
@@ -58,6 +83,7 @@ class uploadVideos extends React.Component {
                 <p> Pick a file to upload to route {this.state.route.name}</p>
                 <input id="uploadVideos" type="file"/>
                 <button onClick={this.uploadFile} >upload</button>
+                <ProgressBar percentage={this.state.uploadProgress}/>
             </div>
         );
     }
