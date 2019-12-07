@@ -28,7 +28,6 @@ export const getVideo = `query GetVideo($id: ID!) {
       }
     }
     file
-    owner
   }
 }
 `;
@@ -54,7 +53,6 @@ export const listVideos = `query ListVideos(
         routeSetter
       }
       file
-      owner
     }
     nextToken
   }
@@ -210,7 +208,6 @@ export const getRoute = `query GetRoute($id: ID!) {
         id
         createdAt
         file
-        owner
       }
       nextToken
     }

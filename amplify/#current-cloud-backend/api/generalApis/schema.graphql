@@ -1,6 +1,4 @@
-type Video @model @auth(rules: [
-    {allow: owner}
-    {allow: groups, groups: ["Users"], mutations: null, queries: [get, list]}]) {
+type Video @model {
     id: ID!
     tags: [Tag] @connection
     createdAt: AWSDate!
