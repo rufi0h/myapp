@@ -2,7 +2,6 @@ import React from 'react';
 import { Storage, API, graphqlOperation } from 'aws-amplify';
 import { getRouteVideos } from '../../graphql/customQueries';
 import '../shared.css';
-import {useHistory} from "react-router-dom";
 
 function ListVideos(props) {
     const videos = props.videos;
@@ -13,9 +12,8 @@ function ListVideos(props) {
             <div>
                 <video controls muted width="250">
                     {/*below here will be undefined*/}
-                    <p>{video.signedUrl}</p>
-                    <source src={video.file} type="video/mov"/>
-                    <source src={video.file} type="video/mp4"/>
+                    <source src={video.signedUrl} type="video/mov"/>
+                    <source src={video.signedUrl} type="video/mp4"/>
                 </video>
             </div>
         </div>
@@ -42,6 +40,14 @@ class ClimbingRoute extends React.Component {
         let searchQuery = temp[0] + routeId + temp[1];
 
         const route = await API.graphql(graphqlOperation(searchQuery));
+
+        for(let i = 0; i < route.data.getRoute.videos.items.length; i++) {
+            await Storage.get(route.data.getRoute.videos.items[i].file.substring(route.data.getRoute.videos.items[i].file.lastIndexOf("/")+1), {level: 'public' }).then(result => {
+                route.data.getRoute.videos.items[i].signedUrl = result;
+            }).catch(err => {
+                console.log(err);
+            });
+        }
         this.setState({
             route: [route.data.getRoute]
         })

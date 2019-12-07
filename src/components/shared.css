@@ -6,8 +6,10 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 .child img {
     max-height: 200px;
+    min-width: 50px;
 }

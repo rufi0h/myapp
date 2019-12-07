@@ -3,7 +3,7 @@ type Video @model @auth(rules: [
     {allow: groups, groups: ["Users"], mutations: null, queries: [get, list]}]) {
     id: ID!
     tags: [Tag] @connection
-    createdAt: AWSDateTime!
+    createdAt: AWSDate!
     route: Route @connection
     file: String
 }
@@ -43,7 +43,7 @@ type Route @model {
     active: Boolean
     grade: String
     rating: Int
-    dateSet: AWSDateTime!
+    dateSet: AWSDate!
     tags: [Tag] @connection
     routeSetter: String
     videos: [Video] @connection
