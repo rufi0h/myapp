@@ -4,7 +4,6 @@ type Video {
   createdAt: AWSDate!
   route: Route
   file: String
-  owner: String
 }
 
 type Tag {
@@ -180,9 +179,9 @@ type Mutation {
 }
 
 type Subscription {
-  onCreateVideo(owner: String!): Video @aws_subscribe(mutations: ["createVideo"])
-  onUpdateVideo(owner: String!): Video @aws_subscribe(mutations: ["updateVideo"])
-  onDeleteVideo(owner: String!): Video @aws_subscribe(mutations: ["deleteVideo"])
+  onCreateVideo: Video @aws_subscribe(mutations: ["createVideo"])
+  onUpdateVideo: Video @aws_subscribe(mutations: ["updateVideo"])
+  onDeleteVideo: Video @aws_subscribe(mutations: ["deleteVideo"])
   onCreateTag: Tag @aws_subscribe(mutations: ["createTag"])
   onUpdateTag: Tag @aws_subscribe(mutations: ["updateTag"])
   onDeleteTag: Tag @aws_subscribe(mutations: ["deleteTag"])

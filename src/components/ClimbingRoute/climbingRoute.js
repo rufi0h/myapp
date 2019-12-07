@@ -11,7 +11,6 @@ function ListVideos(props) {
              key={video.id}>
             <div>
                 <video controls muted width="250">
-                    {/*below here will be undefined*/}
                     <source src={video.signedUrl} type="video/mov"/>
                     <source src={video.signedUrl} type="video/mp4"/>
                 </video>
@@ -38,11 +37,11 @@ class ClimbingRoute extends React.Component {
 
         let temp = getRouteVideos.split('**');
         let searchQuery = temp[0] + routeId + temp[1];
-
+        console.log(searchQuery);
         const route = await API.graphql(graphqlOperation(searchQuery));
 
         for(let i = 0; i < route.data.getRoute.videos.items.length; i++) {
-            await Storage.get(route.data.getRoute.videos.items[i].file.substring(route.data.getRoute.videos.items[i].file.lastIndexOf("/")+1), {level: 'public' }).then(result => {
+            await Storage.get(route.data.getRoute.videos.items[i].file, {level: 'public' }).then(result => {
                 route.data.getRoute.videos.items[i].signedUrl = result;
             }).catch(err => {
                 console.log(err);

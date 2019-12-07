@@ -28,7 +28,6 @@ export const createVideo = `mutation CreateVideo($input: CreateVideoInput!) {
       }
     }
     file
-    owner
   }
 }
 `;
@@ -59,7 +58,6 @@ export const updateVideo = `mutation UpdateVideo($input: UpdateVideoInput!) {
       }
     }
     file
-    owner
   }
 }
 `;
@@ -90,7 +88,6 @@ export const deleteVideo = `mutation DeleteVideo($input: DeleteVideoInput!) {
       }
     }
     file
-    owner
   }
 }
 `;
@@ -310,7 +307,6 @@ export const createRoute = `mutation CreateRoute($input: CreateRouteInput!) {
         id
         createdAt
         file
-        owner
       }
       nextToken
     }
@@ -338,7 +334,6 @@ export const updateRoute = `mutation UpdateRoute($input: UpdateRouteInput!) {
         id
         createdAt
         file
-        owner
       }
       nextToken
     }
@@ -366,7 +361,6 @@ export const deleteRoute = `mutation DeleteRoute($input: DeleteRouteInput!) {
         id
         createdAt
         file
-        owner
       }
       nextToken
     }

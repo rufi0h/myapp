@@ -1,8 +1,8 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateVideo = `subscription OnCreateVideo($owner: String!) {
-  onCreateVideo(owner: $owner) {
+export const onCreateVideo = `subscription OnCreateVideo {
+  onCreateVideo {
     id
     tags {
       items {
@@ -28,12 +28,11 @@ export const onCreateVideo = `subscription OnCreateVideo($owner: String!) {
       }
     }
     file
-    owner
   }
 }
 `;
-export const onUpdateVideo = `subscription OnUpdateVideo($owner: String!) {
-  onUpdateVideo(owner: $owner) {
+export const onUpdateVideo = `subscription OnUpdateVideo {
+  onUpdateVideo {
     id
     tags {
       items {
@@ -59,12 +58,11 @@ export const onUpdateVideo = `subscription OnUpdateVideo($owner: String!) {
       }
     }
     file
-    owner
   }
 }
 `;
-export const onDeleteVideo = `subscription OnDeleteVideo($owner: String!) {
-  onDeleteVideo(owner: $owner) {
+export const onDeleteVideo = `subscription OnDeleteVideo {
+  onDeleteVideo {
     id
     tags {
       items {
@@ -90,7 +88,6 @@ export const onDeleteVideo = `subscription OnDeleteVideo($owner: String!) {
       }
     }
     file
-    owner
   }
 }
 `;
@@ -310,7 +307,6 @@ export const onCreateRoute = `subscription OnCreateRoute {
         id
         createdAt
         file
-        owner
       }
       nextToken
     }
@@ -338,7 +334,6 @@ export const onUpdateRoute = `subscription OnUpdateRoute {
         id
         createdAt
         file
-        owner
       }
       nextToken
     }
@@ -366,7 +361,6 @@ export const onDeleteRoute = `subscription OnDeleteRoute {
         id
         createdAt
         file
-        owner
       }
       nextToken
     }

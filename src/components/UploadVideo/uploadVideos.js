@@ -39,10 +39,8 @@ class uploadVideos extends React.Component {
         Storage.put(name, file, {
             progressCallback(progress) {
                 let percentageDone = Math.round((progress.loaded/progress.total)*100);
-                uploadThis.setState( () => {
-                    return {
+                uploadThis.setState({
                         uploadProgress: percentageDone
-                    }
                 });
                 console.log(`Uploaded: ${percentageDone}%`);
             },

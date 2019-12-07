@@ -108,7 +108,6 @@ export const getRouteVideos = `query GetRoute {
       items{
         id
         file
-        owner
       }
     }
   }
