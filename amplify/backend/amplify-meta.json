@@ -19,7 +19,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/amplify-climbingapp-dev-143311-deployment/amplify-cfn-templates/hosting/template.json",
 				"logicalId": "hostingS3AndCloudFront"
 			},
-			"lastPushTimeStamp": "2019-12-08T23:56:03.909Z",
+			"lastPushTimeStamp": "2019-12-09T06:18:09.029Z",
 			"output": {
 				"S3BucketSecureURL": "https://climbingapp-20191103143415-hostingbucket-dev.s3.amazonaws.com",
 				"WebsiteURL": "http://climbingapp-20191103143415-hostingbucket-dev.s3-website-us-east-1.amazonaws.com",
@@ -48,7 +48,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/amplify-climbingapp-dev-143311-deployment/amplify-cfn-templates/auth/climbingapp6f1014f5-cloudformation-template.yml",
 				"logicalId": "authclimbingapp6f1014f5"
 			},
-			"lastPushTimeStamp": "2019-12-08T23:56:03.910Z",
+			"lastPushTimeStamp": "2019-12-09T06:18:09.030Z",
 			"output": {
 				"AppClientSecret": "1fhjivm6na2man8p68l7k5rnm6c9t76etrlposd85dutej3kumuj",
 				"UserPoolId": "us-east-1_PibDQ5vl1",
@@ -69,7 +69,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/amplify-climbingapp-dev-143311-deployment/amplify-cfn-templates/analytics/pinpoint-cloudformation-template.json",
 				"logicalId": "analyticsclimbingapp"
 			},
-			"lastPushTimeStamp": "2019-12-08T23:56:03.912Z",
+			"lastPushTimeStamp": "2019-12-09T06:18:09.032Z",
 			"output": {
 				"appName": "climbingapp-dev",
 				"Region": "us-east-1",
@@ -86,7 +86,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/amplify-climbingapp-dev-143311-deployment/amplify-cfn-templates/storage/s3-cloudformation-template.json",
 				"logicalId": "storagebetavideos"
 			},
-			"lastPushTimeStamp": "2019-12-08T23:56:03.913Z",
+			"lastPushTimeStamp": "2019-12-09T06:18:09.032Z",
 			"output": {
 				"BucketName": "betavideos-dev",
 				"Region": "us-east-1"
@@ -115,8 +115,8 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/amplify-climbingapp-dev-143311-deployment/amplify-cfn-templates/api/cloudformation-template.json",
 				"logicalId": "apigeneralApis"
 			},
-			"lastPushTimeStamp": "2019-12-08T23:56:05.631Z",
-			"lastPushDirHash": "TS14Dt5d7EH26kYI2/OwZJi8Dlc="
+			"lastPushTimeStamp": "2019-12-09T06:18:12.846Z",
+			"lastPushDirHash": "wj7PAzH89ymF+Yh+2gOLO+Ccdag="
 		}
 	},
 	"function": {
@@ -131,7 +131,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/amplify-climbingapp-dev-143311-deployment/amplify-cfn-templates/function/climbingapp6f1014f5PostConfirmation-cloudformation-template.json",
 				"logicalId": "functionclimbingapp6f1014f5PostConfirmation"
 			},
-			"lastPushTimeStamp": "2019-12-08T23:56:03.914Z",
+			"lastPushTimeStamp": "2019-12-09T06:18:09.033Z",
 			"output": {
 				"Region": "us-east-1",
 				"Arn": "arn:aws:lambda:us-east-1:008500709685:function:climbingapp6f1014f5PostConfirmation-dev",

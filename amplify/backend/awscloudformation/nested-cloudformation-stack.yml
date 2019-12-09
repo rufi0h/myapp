@@ -220,7 +220,7 @@
 						]
 					},
 					"S3DeploymentBucket": "amplify-climbingapp-dev-143311-deployment",
-					"S3DeploymentRootKey": "amplify-appsync-files/f8456b2fe9f5e104155c91238bf71fc3959bafeb",
+					"S3DeploymentRootKey": "amplify-appsync-files/385ea5c7e79d52ac9ea1dd87e835c577da2a7017",
 					"env": "dev"
 				}
 			}

@@ -4,7 +4,6 @@ type Video {
   createdAt: AWSDate!
   route: Route
   file: String
-  approved: Boolean
 }
 
 type Tag {
@@ -118,7 +117,6 @@ input ModelVideoFilterInput {
   id: ModelIDFilterInput
   createdAt: ModelStringFilterInput
   file: ModelStringFilterInput
-  approved: ModelBooleanFilterInput
   and: [ModelVideoFilterInput]
   or: [ModelVideoFilterInput]
   not: ModelVideoFilterInput
@@ -143,7 +141,6 @@ input CreateVideoInput {
   id: ID
   createdAt: AWSDate!
   file: String
-  approved: Boolean
   videoRouteId: ID
   routeVideosId: ID
 }
@@ -152,7 +149,6 @@ input UpdateVideoInput {
   id: ID!
   createdAt: AWSDate
   file: String
-  approved: Boolean
   videoRouteId: ID
   routeVideosId: ID
 }
