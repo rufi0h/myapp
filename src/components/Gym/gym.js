@@ -10,11 +10,23 @@ Storage.configure({
 });
 
 function ListWalls(props) {
-    const wall = props.walls;
+    let wall = props.walls;
     const history = useHistory();
 
-    function testFunction (id) {
+    function navigate (id) {
         history.push(`/wall/${id}`);
+    }
+
+    for (let i =0; i < wall.length; i++) {
+        let totalVidsForRoutes = 0;
+        for (let j = 0; j < wall[i].routes.items.length; j++) {
+
+            //console.log("\n okay lets see what it is. \n", wall[i].routes.items[j].videos.items.length);
+            totalVidsForRoutes += wall[i].routes.items[j].videos.items.length;
+        }
+        console.log("\n The total number of vids for ", wall[i].name , " is ", totalVidsForRoutes, "\n");
+        wall[i].totalVidCount = totalVidsForRoutes;
+
     }
     const listItems = wall.map((wall) =>
 
@@ -25,8 +37,9 @@ function ListWalls(props) {
                 src={wall.wallImg}
                 alt="wallImg"/>
             <p>{wall.routes.items.length} Routes</p>
+            <p>{wall.totalVidCount} Videos</p>
             <p>
-                <button onClick={() => testFunction(wall.id)}> go to the wall</button>
+                <button onClick={() => navigate(wall.id)}> go to the wall</button>
             </p>
         </div>
     );

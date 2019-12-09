@@ -62,7 +62,7 @@ export const getGymsWalls = `query GetGymsWalls{
     name
     location
     gymImg
-    walls{
+    walls(limit : 100){
         items{
           id
           name
@@ -70,6 +70,12 @@ export const getGymsWalls = `query GetGymsWalls{
           routes (filter: {active: {eq: true}}) {
             items {
               id
+              videos{
+                items{
+                  id
+                  file
+                }
+              }
             }
           }
         }

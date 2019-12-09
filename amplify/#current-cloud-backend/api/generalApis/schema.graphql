@@ -4,6 +4,7 @@ type Video @model {
     createdAt: AWSDate!
     route: Route @connection
     file: String
+    approved: Boolean
 }
 type Tag @model {
     id: ID!

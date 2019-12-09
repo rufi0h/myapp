@@ -28,6 +28,7 @@ export const onCreateVideo = `subscription OnCreateVideo {
       }
     }
     file
+    approved
   }
 }
 `;
@@ -58,6 +59,7 @@ export const onUpdateVideo = `subscription OnUpdateVideo {
       }
     }
     file
+    approved
   }
 }
 `;
@@ -88,6 +90,7 @@ export const onDeleteVideo = `subscription OnDeleteVideo {
       }
     }
     file
+    approved
   }
 }
 `;
@@ -307,6 +310,7 @@ export const onCreateRoute = `subscription OnCreateRoute {
         id
         createdAt
         file
+        approved
       }
       nextToken
     }
@@ -334,6 +338,7 @@ export const onUpdateRoute = `subscription OnUpdateRoute {
         id
         createdAt
         file
+        approved
       }
       nextToken
     }
@@ -361,6 +366,7 @@ export const onDeleteRoute = `subscription OnDeleteRoute {
         id
         createdAt
         file
+        approved
       }
       nextToken
     }
